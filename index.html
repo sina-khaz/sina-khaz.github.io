@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Survey JS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://surveyjs.azureedge.net/0.12.7/survey.jquery.min.js"></script>
+    <link href="https://surveyjs.azureedge.net/0.12.7/survey.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+
+<div id="surveyContainer"></div>
+
+    <script type="text/javascript">
+    Survey.Survey.cssType = "bootstrap";
+
+    var surveyJSON = {pages:[{elements:[{type:"panel",elements:[{type:"text",name:"Name",title:"Name",isRequired:true},{type:"text",name:"Flight Start Date",title:"Flight Start Date",isRequired:true,inputType:"datetime"},{type:"text",name:"Flight End Date",title:"Flight End Date",isRequired:true,inputType:"datetime"},{type:"dropdown",choices:[{value:"1",text:"ABC"},{value:"2",text:"Banana Republic Apparel"},{value:"3",text:"CNN"},{value:"4",text:"Dell Computers"},{value:"5",text:"etc.."}],isRequired:true,name:"Advertiser",title:"Advertiser"},{type:"text",name:"Budget",title:"Budget",isRequired:true,inputType:"number",placeHolder:"$0"},{type:"radiogroup",choices:[{value:"1",text:"Online"},{value:"2",text:"Print"}],isRequired:true,name:"Media Mix",title:"Media Mix"},{type:"radiogroup",choices:[{value:"1",text:"Weighted"},{value:"3",text:"Evenly"}],isRequired:true,name:"Flighting",title:"Flighting"}],name:"Basic Settings",title:"Basic Settings"},{type:"panel",elements:[{type:"dropdown",choices:[{value:"1",text:"Interactive"},{value:"2",text:"Social"},{value:"3",text:"Search"},{value:"4",text:"Outdoor"},{value:"5",text:"Television"}],isRequired:true,name:"Media Code",title:"Media Code"},{type:"dropdown",choices:[{value:"1",text:"Aldo"},{value:"2",text:"Fruit"},{value:"3",text:"Fedex"},{value:"4",text:"Oracle"},{value:"5",text:"Ice Cream"}],isRequired:true,name:"Client",title:"Client"},{type:"dropdown",choices:[{value:"1",text:"A"},{value:"2",text:"B"},{value:"3",text:"C"}],name:"Product ",title:"Product"},{type:"dropdown",choices:[{value:"1",text:"2017 Q1"},{value:"2",text:"2017 Q2"},{value:"3",text:"2017 Q3"},{value:"4",text:"2017 Q4"}],isRequired:true,name:"Estimate",title:"Estimate"},{type:"radiogroup",choices:[{value:"1",text:"Display"},{value:"2",text:"Search"},{value:"3",text:"Interactive"},{value:"4",text:"Fee"}],name:"Buy Type",title:"Buy Type"}],name:"panel1",title:"Financial Setting"}],name:"page1"},{name:"page2"}]}
+
+    function sendDataToServer(survey) {
+        //send Ajax request to your web server.
+        alert("The results are:" + JSON.stringify(s.data));
+    }
+
+    var survey = new Survey.Model(surveyJSON);
+    $("#surveyContainer").Survey({
+        model: survey,
+        onComplete: sendDataToServer
+    });
+    </script>
+
+  </body>
+</html>
