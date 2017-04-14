@@ -10,3 +10,11 @@ h1 {
     color: navy;
     margin-left: 20px;
 }
+
+h4{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 30px;
+}

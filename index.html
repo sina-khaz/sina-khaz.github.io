@@ -20,7 +20,605 @@ Survey.defaultBootstrapCss.body = "panel-heading";
 
    Survey.Survey.cssType = "bootstrap";
 
-var surveyJSON = {pages:[{name:"page1",elements:[{type:"dropdown",name:"Sub Media ",choices:[{value:"1",text:"Display"},{value:"2",text:"Video"},{value:"3",text:"Social"},{value:"4",text:"Search"},{value:"5",text:"Other"}]},{type:"radiogroup",name:"PurchaseType",title:"Purchase Type",isRequired:true,choices:[{value:"1",text:"Direct"},{value:"2",text:"Programmatic"},{value:"3",text:"Both"}]},{type:"panel",name:"Buy",elements:[{type:"text",name:"Name",title:"Name"},{type:"dropdown",name:"ContentCategory",title:"Content Category",choices:[{value:"1",text:"Automative"},{value:"2",text:"Government"},{value:"3",text:"etc."}]},{type:"dropdown",name:"MarketingType",title:"Marketing Type",choices:[{value:"1",text:"Branded Content"},{value:"2",text:"Sponsorship"},{value:"3",text:"etc."}]}],title:"What Are You Buying?"},{type:"panel",name:"Tagging",elements:[{type:"dropdown",name:"PrimaryAdServer",title:"Primary Ad Server",choices:[{value:"1",text:"Double Click"},{value:"2",text:"OpenX"},{value:"3",text:"AdZerk"},{value:"4",text:"etc."}]},{type:"dropdown",name:"3party",title:"3rd Party Providers",choices:[{value:"1",text:"Atlas"},{value:"2",text:"Moat"},{value:"3",text:"etc."}]},{type:"dropdown",name:"ServedBy",title:"Served By",choices:[{value:"1",text:"DSP"},{value:"2",text:"Site"}]},{type:"dropdown",name:"TrackingMethod",title:"Tracking Method",choices:[{value:"1",text:"Cookies"},{value:"2",text:"Pixel"},{value:"3",text:"Click Redirects"}]},{type:"text",name:"TrackingDescription",title:"Tracking Description"},{type:"text",name:"KPI",title:"KPI"}],title:"Tagging Strategy"},{type:"panel",name:"Targeting",elements:[{type:"checkbox",name:"TargetingType",title:"Targeting Type",choices:["Audience","Geo","Time","Technology"]},{type:"panel",name:"Audience",elements:[{type:"radiogroup",name:"question2",choices:[{value:"1",text:"Male"},{value:"2",text:"Female"},{value:"3",text:"Any"}]},{type:"dropdown",name:"Demo",title:"Demo",choices:[{value:"1",text:"Single 15-35"},{value:"2",text:"Retired 67-73"},{value:"3",text:"etc."}]},{type:"radiogroup",name:"Behavioral",title:"Behavioral",choices:[{value:"1",text:"Yes"},{value:"2",text:"No"},{value:"3",text:"none"}]},{type:"radiogroup",name:"Contextual",title:"Contextual",choices:[{value:"1",text:"Yes"},{value:"2",text:"No"},{value:"3",text:"none"}]},{type:"radiogroup",name:"Retargeting",title:"Retargeting",choices:[{value:"1",text:"Yes"},{value:"2",text:"No"},{value:"3",text:"none"}]}],visible:false,visibleIf:"{TargetingType} = \"Audience\"",title:"Audience"},{type:"panel",name:"Geo",elements:[{type:"text",name:"Country",title:"Country",placeHolder:"US"},{type:"text",name:"Market",title:"Market",placeHolder:"San Diego"},{type:"text",name:"State",title:"State",placeHolder:"CA, NY, IL"},{type:"text",name:"ZipCode",title:"Zip Code",inputType:"number",placeHolder:"10001"}],visible:false,visibleIf:"{TargetingType} = \"Geo\"",title:"Geo"},{type:"panel",name:"Time",elements:[{type:"text",name:"Week",title:"Week",placeHolder:"04/21/2017 - 04/28/2017"},{type:"checkbox",name:"Day",title:"Day",choices:[{value:"1",text:"Mon"},{value:"2",text:"Tue"},{value:"3",text:"Wed"},{value:"4",text:"Thur"},{value:"5",text:"Fri"},{value:"6",text:"Sat"},{value:"7",text:"Sun"}]},{type:"matrixdropdown",name:"TimeOfDay",title:"Time Of Day",columns:[{name:"Column 1",title:"Hour",choices:["1","2","3","4","5","6","7","8","9","10","11","12"],cellType:"dropdown"},{name:"Column 2",title:"AM/PM",choices:["AM","PM"],cellType:"radiogroup"}],choices:[1,2,3,4,5],rows:["Start","End"]}],visible:false,visibleIf:"{TargetingType}=\"Time\"",title:"Time"},{type:"panel",name:"Technology",elements:[{type:"checkbox",name:"Device",title:"Device",choices:[{value:"1",text:"Desktop & Laptop"},{value:"2",text:"Tablet"},{value:"3",text:"Mobile"}]},{type:"checkbox",name:"OS",title:"Operating System",choices:[{value:"1",text:"Windows"},{value:"2",text:"Mac"},{value:"3",text:"Linux"},{value:"4",text:"iOS"},{value:"5",text:"Android"}]},{type:"checkbox",name:"Browser",title:"Browser",choices:[{value:"1",text:"Chrome"},{value:"2",text:"Firefox"},{value:"3",text:"Internet Explorer"},{value:"4",text:"Safari"},{value:"5",text:"Opera"}]}],visible:false,visibleIf:"{TargetingType} = Technology",title:"Technology"}],title:"Targeting"},{type:"panel",name:"Who",elements:[{type:"text",name:"Supplier",title:"Supplier",placeHolder:"CNN, TradeDesk"},{type:"text",name:"MediaProperty",title:"Media Property",placeHolder:"CNN, Yahoo"},{type:"radiogroup",name:"PMP",visible:false,visibleIf:"{PurchaseType} = 2 or {PurchaseType} = 3",title:"PMP",choices:[{value:"1",text:"Yes"},{value:"2",text:"No"},{value:"3",text:"none"}]},{type:"checkbox",name:"DSP",title:"DSP",choices:[{value:"1",text:"AppNexus"},{value:"2",text:"TradeDesk"},{value:"3",text:"MediaMath"}]},{type:"text",name:"Site",title:"Site",placeHolder:"yahoo.com"},{type:"text",name:"Section",title:"Section",placeHolder:"Yahoo Sports"},{type:"text",name:"Deal ID",visible:false,visibleIf:"{PurchaseType} = 2 or {PurchaseType} = 3",title:"Deal ID",placeHolder:"123456789"},{type:"text",name:"Payee",visible:false,visibleIf:"{PurchaseType} = 2 or {PurchaseType} = 3",title:"Payee",placeHolder:"Media Property"}],title:"From Who?"}]}]}
+var surveyJSON = {
+ pages: [
+  {
+   elements: [
+    {
+     type: "dropdown",
+     name: "Sub Media ",
+     choices: [
+      {
+       value: "1",
+       text: "Display"
+      },
+      {
+       value: "2",
+       text: "Video"
+      },
+      {
+       value: "3",
+       text: "Social"
+      },
+      {
+       value: "4",
+       text: "Search"
+      },
+      {
+       value: "5",
+       text: "Other"
+      }
+     ]
+    },
+    {
+     type: "radiogroup",
+     name: "PurchaseType",
+     title: "Purchase Type",
+     isRequired: true,
+     choices: [
+      {
+       value: "1",
+       text: "Direct"
+      },
+      {
+       value: "2",
+       text: "Programmatic"
+      },
+      {
+       value: "3",
+       text: "Both"
+      }
+     ]
+    },
+    {
+     type: "panel",
+     elements: [
+      {
+       type: "text",
+       name: "Name",
+       title: "Name"
+      },
+      {
+       type: "dropdown",
+       name: "ContentCategory",
+       title: "Content Category",
+       choices: [
+        {
+         value: "1",
+         text: "Automative"
+        },
+        {
+         value: "2",
+         text: "Government"
+        },
+        {
+         value: "3",
+         text: "etc."
+        }
+       ]
+      },
+      {
+       type: "dropdown",
+       name: "MarketingType",
+       title: "Marketing Type",
+       choices: [
+        {
+         value: "1",
+         text: "Branded Content"
+        },
+        {
+         value: "2",
+         text: "Sponsorship"
+        },
+        {
+         value: "3",
+         text: "etc."
+        }
+       ]
+      }
+     ],
+     name: "Buy",
+     title: "What Are You Buying?"
+    },
+    {
+     type: "panel",
+     elements: [
+      {
+       type: "dropdown",
+       name: "PrimaryAdServer",
+       title: "Primary Ad Server",
+       choices: [
+        {
+         value: "1",
+         text: "Double Click"
+        },
+        {
+         value: "2",
+         text: "OpenX"
+        },
+        {
+         value: "3",
+         text: "AdZerk"
+        },
+        {
+         value: "4",
+         text: "etc."
+        }
+       ]
+      },
+      {
+       type: "dropdown",
+       name: "3party",
+       title: "3rd Party Providers",
+       choices: [
+        {
+         value: "1",
+         text: "Atlas"
+        },
+        {
+         value: "2",
+         text: "Moat"
+        },
+        {
+         value: "3",
+         text: "etc."
+        }
+       ]
+      },
+      {
+       type: "dropdown",
+       name: "ServedBy",
+       title: "Served By",
+       choices: [
+        {
+         value: "1",
+         text: "DSP"
+        },
+        {
+         value: "2",
+         text: "Site"
+        }
+       ]
+      },
+      {
+       type: "dropdown",
+       name: "TrackingMethod",
+       title: "Tracking Method",
+       choices: [
+        {
+         value: "1",
+         text: "Cookies"
+        },
+        {
+         value: "2",
+         text: "Pixel"
+        },
+        {
+         value: "3",
+         text: "Click Redirects"
+        }
+       ]
+      },
+      {
+       type: "text",
+       name: "TrackingDescription",
+       title: "Tracking Description"
+      },
+      {
+       type: "text",
+       name: "KPI",
+       title: "KPI"
+      }
+     ],
+     name: "Tagging",
+     title: "Tagging Strategy"
+    },
+    {
+     type: "panel",
+     elements: [
+      {
+       type: "panel",
+       elements: [
+        {
+         type: "radiogroup",
+         name: "question2",
+         choices: [
+          {
+           value: "1",
+           text: "Male"
+          },
+          {
+           value: "2",
+           text: "Female"
+          },
+          {
+           value: "3",
+           text: "Any"
+          }
+         ]
+        },
+        {
+         type: "dropdown",
+         name: "Demo",
+         title: "Demo",
+         choices: [
+          {
+           value: "1",
+           text: "Single 15-35"
+          },
+          {
+           value: "2",
+           text: "Retired 67-73"
+          },
+          {
+           value: "3",
+           text: "etc."
+          }
+         ]
+        },
+        {
+         type: "radiogroup",
+         name: "Behavioral",
+         title: "Behavioral",
+         choices: [
+          {
+           value: "1",
+           text: "Yes"
+          },
+          {
+           value: "2",
+           text: "No"
+          },
+          {
+           value: "3",
+           text: "none"
+          }
+         ]
+        },
+        {
+         type: "radiogroup",
+         name: "Contextual",
+         title: "Contextual",
+         choices: [
+          {
+           value: "1",
+           text: "Yes"
+          },
+          {
+           value: "2",
+           text: "No"
+          },
+          {
+           value: "3",
+           text: "none"
+          }
+         ]
+        },
+        {
+         type: "radiogroup",
+         name: "Retargeting",
+         title: "Retargeting",
+         choices: [
+          {
+           value: "1",
+           text: "Yes"
+          },
+          {
+           value: "2",
+           text: "No"
+          },
+          {
+           value: "3",
+           text: "none"
+          }
+         ]
+        }
+       ],
+       name: "Audience",
+       title: "Audience"
+      },
+      {
+       type: "panel",
+       elements: [
+        {
+         type: "text",
+         name: "Country",
+         placeHolder: "US",
+         title: "Country"
+        },
+        {
+         type: "text",
+         name: "Market",
+         placeHolder: "San Diego",
+         title: "Market"
+        },
+        {
+         type: "text",
+         name: "State",
+         placeHolder: "CA, NY, IL",
+         title: "State"
+        },
+        {
+         type: "text",
+         inputType: "number",
+         name: "ZipCode",
+         placeHolder: "10001",
+         title: "Zip Code"
+        }
+       ],
+       name: "Geo",
+       title: "Geo"
+      },
+      {
+       type: "panel",
+       elements: [
+        {
+         type: "text",
+         name: "Week",
+         placeHolder: "04/21/2017 - 04/28/2017",
+         title: "Week"
+        },
+        {
+         type: "checkbox",
+         choices: [
+          {
+           value: "1",
+           text: "Mon"
+          },
+          {
+           value: "2",
+           text: "Tue"
+          },
+          {
+           value: "3",
+           text: "Wed"
+          },
+          {
+           value: "4",
+           text: "Thur"
+          },
+          {
+           value: "5",
+           text: "Fri"
+          },
+          {
+           value: "6",
+           text: "Sat"
+          },
+          {
+           value: "7",
+           text: "Sun"
+          }
+         ],
+         name: "Day",
+         title: "Day"
+        },
+        {
+         type: "matrixdropdown",
+         name: "TimeOfDay",
+         title: "Time Of Day",
+         columns: [
+          {
+           name: "Column 1",
+           title: "Hour",
+           choices: [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+           ],
+           cellType: "dropdown"
+          },
+          {
+           name: "Column 2",
+           title: "AM/PM",
+           choices: [
+            "AM",
+            "PM"
+           ],
+           cellType: "radiogroup"
+          }
+         ],
+         choices: [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         rows: [
+          "Start",
+          "End"
+         ]
+        }
+       ],
+       name: "Time",
+       title: "Time"
+      },
+      {
+       type: "panel",
+       elements: [
+        {
+         type: "checkbox",
+         choices: [
+          {
+           value: "1",
+           text: "Desktop & Laptop"
+          },
+          {
+           value: "2",
+           text: "Tablet"
+          },
+          {
+           value: "3",
+           text: "Mobile"
+          }
+         ],
+         name: "Device",
+         title: "Device"
+        },
+        {
+         type: "checkbox",
+         choices: [
+          {
+           value: "1",
+           text: "Windows"
+          },
+          {
+           value: "2",
+           text: "Mac"
+          },
+          {
+           value: "3",
+           text: "Linux"
+          },
+          {
+           value: "4",
+           text: "iOS"
+          },
+          {
+           value: "5",
+           text: "Android"
+          }
+         ],
+         name: "OS",
+         title: "Operating System"
+        },
+        {
+         type: "checkbox",
+         choices: [
+          {
+           value: "1",
+           text: "Chrome"
+          },
+          {
+           value: "2",
+           text: "Firefox"
+          },
+          {
+           value: "3",
+           text: "Internet Explorer"
+          },
+          {
+           value: "4",
+           text: "Safari"
+          },
+          {
+           value: "5",
+           text: "Opera"
+          }
+         ],
+         name: "Browser",
+         title: "Browser"
+        }
+       ],
+       name: "Technology",
+       title: "Technology"
+      }
+     ],
+     name: "Targeting",
+     title: "Targeting"
+    },
+    {
+     type: "panel",
+     elements: [
+      {
+       type: "text",
+       name: "Supplier",
+       placeHolder: "CNN, TradeDesk",
+       title: "Supplier"
+      },
+      {
+       type: "text",
+       name: "MediaProperty",
+       placeHolder: "CNN, Yahoo",
+       title: "Media Property"
+      },
+      {
+       type: "radiogroup",
+       name: "PMP",
+       visible: false,
+       visibleIf: "{PurchaseType} = 2 or {PurchaseType} = 3",
+       title: "PMP",
+       choices: [
+        {
+         value: "1",
+         text: "Yes"
+        },
+        {
+         value: "2",
+         text: "No"
+        },
+        {
+         value: "3",
+         text: "none"
+        }
+       ]
+      },
+      {
+       type: "checkbox",
+       choices: [
+        {
+         value: "1",
+         text: "AppNexus"
+        },
+        {
+         value: "2",
+         text: "TradeDesk"
+        },
+        {
+         value: "3",
+         text: "MediaMath"
+        }
+       ],
+       name: "DSP",
+       title: "DSP"
+      },
+      {
+       type: "text",
+       name: "Site",
+       placeHolder: "yahoo.com",
+       title: "Site"
+      },
+      {
+       type: "text",
+       name: "Section",
+       placeHolder: "Yahoo Sports",
+       title: "Section"
+      },
+      {
+       type: "text",
+       name: "Deal ID",
+       placeHolder: "123456789",
+       title: "Deal ID",
+       visible: false,
+       visibleIf: "{PurchaseType} = 2 or {PurchaseType} = 3"
+      },
+      {
+       type: "text",
+       name: "Payee",
+       placeHolder: "Media Property",
+       title: "Payee",
+       visible: false,
+       visibleIf: "{PurchaseType} = 2 or {PurchaseType} = 3"
+      }
+     ],
+     name: "Who",
+     title: "From Who?"
+    }
+   ],
+   name: "page1"
+  }
+ ]
+}
 
 function sendDataToServer(survey) {
     //send Ajax request to your web server.
@@ -29,8 +627,8 @@ function sendDataToServer(survey) {
 
 var myCss = {
         matrix: {root: "table table-striped"},
-        navigationButton: "button btn-lg",
-        body: "panel-header"   
+        body: "panel-header",
+        header: "page-header"
    };
 
 
