@@ -1,0 +1,12 @@
+body {
+    background-color: #efefef;
+    margin-left: 40px;
+    margin-top: 50px;
+    padding-right: 70%;
+    font-family: Merriweather;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
